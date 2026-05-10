@@ -617,6 +617,10 @@
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
     const data = new FormData(form);
+    const nameField = form.querySelector('input[name="name"]');
+    const fullName = nameField ? nameField.value.trim() : '';
+    const firstName = fullName.split(' ')[0];
+
     const response = await fetch(form.action, {
       method: 'POST',
       body: data,
@@ -625,6 +629,15 @@
     if (response.ok) {
       document.getElementById('fs-success').style.display = 'block';
       document.getElementById('fs-error').style.display = 'none';
+
+      // Fire EmailJS confirmation email
+      emailjs.send('service_7edld9g', 'template_k5r38wd', {
+        name: firstName,
+        email: form.querySelector('input[name="email"]').value.trim()
+      }).catch(function(err) {
+        console.warn('EmailJS error:', err);
+      });
+
       form.reset();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
@@ -632,6 +645,10 @@
       document.getElementById('fs-success').style.display = 'none';
     }
   });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init({ publicKey: '6pPkywUDlMzVnZIHO' });
 </script>
 
 </body>
