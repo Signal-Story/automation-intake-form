@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signal & Story — Discovery Intake</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #063959;
+    --jungle: #134E40;
+    --cream: #f6f7ed;
+    --sand: #D6CDB8;
+    --coral: #f7735b;
+    --teal: #6bd1c7;
+    --lime: #d2f24b;
+    --gold: #D4881A;
+    --plum: #6E5FBD;
+    --lavender: #E8E4F8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--navy);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    background: var(--navy);
+    padding: 48px 64px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logo-wrap {
+    margin-bottom: 28px;
+  }
+
+  .header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--cream);
+    line-height: 1.15;
+    max-width: 560px;
+    margin-bottom: 16px;
+  }
+
+  .header h1 em {
+    font-style: italic;
+    color: var(--coral);
+  }
+
+  .header-sub {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: rgba(246, 247, 237, 0.65);
+    max-width: 480px;
+    line-height: 1.7;
+  }
+
+  /* Main content */
+  .main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 40px 80px;
+  }
+
+  /* Intro block */
+  .intro-block {
+    border-left: 3px solid var(--coral);
+    padding: 20px 24px;
+    background: white;
+    margin-bottom: 52px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .intro-block p {
+    font-size: 14.5px;
+    color: var(--navy);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .intro-block p + p {
+    margin-top: 10px;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 52px;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+
+  .section-number {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--lime);
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  .section-divider {
+    height: 1px;
+    background: var(--sand);
+    margin-bottom: 28px;
+    margin-top: -4px;
+  }
+
+  /* Question */
+  .question {
+    margin-bottom: 28px;
+  }
+
+  .question label {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .question .hint {
+    font-size: 12.5px;
+    font-weight: 300;
+    color: #7a8fa0;
+    display: block;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .question input[type="text"],
+  .question input[type="email"],
+  .question select,
+  .question textarea {
+    width: 100%;
+    background: white;
+    border: 1.5px solid var(--sand);
+    border-radius: 4px;
+    padding: 12px 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--navy);
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .question input:focus,
+  .question select:focus,
+  .question textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+  }
+
+  .question textarea {
+    min-height: 90px;
+    resize: vertical;
+  }
+
+  /* Checkbox group */
+  .check-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .check-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    padding: 14px 18px;
+    border: 1.5px solid var(--sand);
+    border-radius: 4px;
+    background: white;
+    transition: border-color 0.15s, background 0.15s;
+    line-height: 1;
+  }
+
+  .check-item:hover {
+    border-color: var(--teal);
+  }
+
+  .check-item input[type="checkbox"] {
+    accent-color: var(--navy);
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .check-item span {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.4;
+    margin-left: 14px;
+    vertical-align: middle;
+  }
+
+  /* Radio group */
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .radio-pill {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 14px 18px;
+    border: 1.5px solid var(--sand);
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    line-height: 1;
+  }
+
+  .radio-pill:hover {
+    border-color: var(--teal);
+  }
+
+  .radio-pill input[type="radio"] {
+    accent-color: var(--navy);
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .radio-pill span {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--navy);
+    line-height: 1.4;
+    margin-left: 14px;
+    vertical-align: middle;
+  }
+
+  /* HIPAA callout */
+  .hipaa-note {
+    background: var(--lavender);
+    border: 1.5px solid var(--plum);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 28px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .hipaa-note .icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .hipaa-note p {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--plum);
+    line-height: 1.6;
+  }
+
+  .hipaa-note p strong {
+    font-weight: 600;
+  }
+
+  /* Two-column layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  /* Footer */
+  .form-footer {
+    border-top: 1px solid var(--sand);
+    padding-top: 40px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-note {
+    font-size: 13px;
+    font-weight: 300;
+    color: #7a8fa0;
+    line-height: 1.65;
+  }
+
+  .footer-note a {
+    color: var(--coral);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .submit-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .btn-submit {
+    background: var(--navy);
+    color: var(--cream);
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 14px 36px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .btn-submit:hover {
+    background: var(--jungle);
+  }
+
+  .btn-note {
+    font-size: 13px;
+    font-weight: 300;
+    color: #7a8fa0;
+  }
+
+  /* Print styles */
+  @media print {
+    .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-number { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .btn-submit { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 36px 28px 32px; }
+    .header h1 { font-size: 28px; }
+    .main { padding: 40px 24px 60px; }
+    .two-col { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo-wrap">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1643.41 291.39" style="height:36px;width:auto;display:block;">
+      <defs><style>.cls-1{fill:#f6f7ed}.cls-2{fill:#f7735b}</style></defs>
+      <g><g><g><g>
+        <path class="cls-1" d="M56.52,233.59c-7.57,0-14.87-.99-21.87-2.98-7.01-1.99-13.45-4.83-19.31-8.52-5.87-3.69-10.98-8.19-15.34-13.49l19.88-19.88c4.73,5.49,10.18,9.61,16.33,12.35,6.15,2.75,13.11,4.12,20.87,4.12,7,0,12.31-1.04,15.9-3.12,3.59-2.08,5.4-5.11,5.4-9.09s-1.7-7.38-5.11-9.66c-3.41-2.27-7.81-4.21-13.21-5.82-5.4-1.61-11.08-3.27-17.04-4.97-5.96-1.7-11.64-4.02-17.04-6.96-5.4-2.93-9.8-6.96-13.21-12.07-3.41-5.11-5.11-11.74-5.11-19.88,0-8.71,2.03-16.19,6.11-22.44,4.07-6.25,9.84-11.08,17.32-14.48,7.48-3.41,16.42-5.11,26.84-5.11,10.98,0,20.68,1.94,29.11,5.82,8.42,3.88,15.48,9.7,21.16,17.47l-19.88,19.88c-3.98-4.92-8.52-8.61-13.63-11.08-5.11-2.46-10.98-3.69-17.61-3.69-6.25,0-11.08.95-14.48,2.84-3.41,1.89-5.11,4.64-5.11,8.24,0,3.79,1.7,6.72,5.11,8.8,3.41,2.09,7.81,3.88,13.21,5.4,5.4,1.52,11.08,3.17,17.04,4.97,5.96,1.8,11.64,4.26,17.04,7.38s9.8,7.29,13.21,12.5c3.41,5.21,5.11,11.98,5.11,20.31,0,13.25-4.64,23.76-13.92,31.52-9.28,7.77-21.87,11.64-37.77,11.64Z"/><path class="cls-1" d="M150.89,69.44c-5.3,0-9.71-1.8-13.21-5.4-3.51-3.59-5.25-8.05-5.25-13.35s1.75-9.75,5.25-13.35c3.5-3.59,7.9-5.4,13.21-5.4s9.94,1.8,13.35,5.4c3.41,3.6,5.11,8.05,5.11,13.35s-1.7,9.75-5.11,13.35c-3.41,3.6-7.86,5.4-13.35,5.4ZM135.27,230.75V94.43h31.24v136.32h-31.24Z"/><path class="cls-1" d="M254.46,291.39c-11.74,0-22.44-2.18-32.09-6.53-9.66-4.36-17.32-10.41-23-18.18-5.68-7.77-8.52-16.76-8.52-26.98,0-7.77,1.09-14.1,3.27-19.03,1.56-3.52,3.67-6.8,6.35-9.84l25.42,14.87c-.85,1.15-1.56,2.41-2.14,3.79-1.07,2.52-1.6,5.72-1.6,9.61,0,6.79,2.91,12.27,8.73,16.45,5.82,4.17,13.68,6.26,23.58,6.26,10.67,0,18.92-2.43,24.74-7.28,5.82-4.85,8.73-11.74,8.73-20.67,0-5.63-1.36-10.67-4.08-15.14-8.47-13.94-21.17-10.6-28-10.6-11,0-20.91-2.5-29.74-7.51-8.83-5.01-15.81-11.88-20.91-20.61-5.11-8.73-7.66-18.7-7.66-29.89s2.6-21.45,7.8-30.19c5.2-8.73,12.27-15.65,21.2-20.76,8.93-5.1,18.99-7.66,30.19-7.66s21.25,2.46,30.19,7.36c8.93,4.91,16,11.54,21.2,19.88,5.2,8.35,7.8,17.82,7.8,28.42s-2.5,19.98-7.51,28.12c-5.01,8.15-11.83,14.53-20.47,19.14-8.64,4.62-18.55,6.92-29.74,6.92l-1.77-17.03c12.9,0,24,2.06,33.72,6.87,9.72,4.81,15.56,8.56,20.96,16.69,5.4,8.14,8.09,17.51,8.09,28.12s-2.65,20.63-7.95,28.97c-5.3,8.33-12.78,14.81-22.44,19.45-9.66,4.64-21.11,6.96-34.36,6.96ZM256.73,178.62c5.87,0,10.97-1.21,15.33-3.64,4.35-2.43,7.74-5.81,10.17-10.17,2.43-4.35,3.64-9.26,3.64-14.72s-1.21-10.62-3.64-14.87c-2.43-4.25-5.82-7.59-10.17-10.02-4.35-2.43-9.46-3.64-15.33-3.64s-10.98,1.21-15.33,3.64c-4.35,2.43-7.74,5.77-10.17,10.02s-3.64,9.21-3.64,14.87,1.21,10.37,3.64,14.72c2.43,4.35,5.87,7.74,10.32,10.17,4.45,2.43,9.51,3.64,15.18,3.64Z"/><path class="cls-1" d="M342.29,230.75v-77.82c0-12.11,2.56-22.76,7.67-31.95,5.11-9.18,12.21-16.37,21.3-21.58,9.09-5.21,20.69-7.81,32.81-7.81s24,2.56,33.09,7.67c9.09,5.11,16.14,12.26,21.16,21.44,5.01,9.19,7.53,19.93,7.53,32.23v77.82h-31.24v-75.54c0-10.03-2.46-18.13-7.38-24.28-4.93-6.15-13.31-9.23-23.15-9.23s-18,3.08-23.01,9.23c-5.02,6.15-7.53,14.25-7.53,24.28v75.54h-31.24Z"/><path class="cls-1" d="M555.57,233.59c-12.31,0-23.43-3.12-33.37-9.37-9.94-6.25-17.8-14.72-23.57-25.42-5.78-10.69-8.66-22.67-8.66-35.93s2.88-25.51,8.66-36.21c5.77-10.69,13.63-19.21,23.57-25.56,9.94-6.34,21.06-9.51,33.37-9.51,10.41,0,19.64,2.23,27.69,6.67,8.04,4.45,14.44,10.56,19.17,18.32,4.73,7.77,7.1,16.57,7.1,26.41v39.19c0,9.85-2.32,18.65-6.96,26.41-4.64,7.77-11.03,13.87-19.17,18.32-8.14,4.45-17.42,6.67-27.83,6.67ZM560.68,204.06c11.55,0,20.87-3.88,27.97-11.64,7.1-7.76,10.65-17.7,10.65-29.82,0-8.14-1.61-15.34-4.83-21.58-3.22-6.25-7.72-11.12-13.49-14.63-5.78-3.5-12.54-5.25-20.31-5.25s-14.25,1.75-20.02,5.25c-5.78,3.51-10.32,8.38-13.63,14.63-3.31,6.25-4.97,13.45-4.97,21.58s1.66,15.34,4.97,21.58c3.31,6.25,7.85,11.12,13.63,14.63,5.77,3.51,12.45,5.25,20.02,5.25ZM597.32,230.75v-36.64l5.4-33.23-5.4-32.94-9.69-26.99s4.53,3.25,10.76,3.25c4.84,0,10.62-2.45,10.62-2.45l19.55-7.33v136.32h-31.24Z"/><path class="cls-1" d="M663.6,230.75V36.28l31.24-10.01v204.48h-31.24Z"/><path class="cls-1" d="M1045.52,233.59c-7.58,0-14.87-.99-21.87-2.98-7.01-1.99-13.45-4.83-19.31-8.52-5.87-3.69-10.98-8.19-15.34-13.49l19.88-19.88c4.73,5.49,10.17,9.61,16.33,12.35,6.15,2.75,13.11,4.12,20.87,4.12,7,0,12.3-1.04,15.9-3.12,3.59-2.08,5.4-5.11,5.4-9.09s-1.7-7.38-5.11-9.66c-3.41-2.27-7.81-4.21-13.21-5.82-5.4-1.61-11.08-3.27-17.04-4.97-5.96-1.7-11.64-4.02-17.04-6.96-5.4-2.93-9.8-6.96-13.21-12.07s-5.11-11.74-5.11-19.88c0-8.71,2.03-16.19,6.11-22.44,4.07-6.25,9.84-11.08,17.32-14.48,7.48-3.41,16.42-5.11,26.84-5.11,10.98,0,20.68,1.94,29.11,5.82,8.42,3.88,15.48,9.7,21.16,17.47l-19.88,19.88c-3.98-4.92-8.52-8.61-13.63-11.08-5.11-2.46-10.98-3.69-17.61-3.69-6.25,0-11.08.95-14.48,2.84-3.41,1.89-5.11,4.64-5.11,8.24,0,3.79,1.7,6.72,5.11,8.8,3.41,2.09,7.81,3.88,13.21,5.4,5.4,1.52,11.08,3.17,17.04,4.97,5.96,1.8,11.64,4.26,17.04,7.38,5.4,3.12,9.8,7.29,13.21,12.5,3.41,5.21,5.11,11.98,5.11,20.31,0,13.25-4.64,23.76-13.92,31.52-9.28,7.77-21.87,11.64-37.77,11.64Z"/><path class="cls-1" d="M1172.05,233.59c-8.52,0-16.33-1.85-23.43-5.54-7.1-3.69-12.83-9.09-17.18-16.19-4.36-7.1-6.53-15.85-6.53-26.27V52.64l31.24-10.01v142.68c0,6.44,1.85,11.22,5.54,14.34s7.9,4.69,12.64,4.69c4.16,0,7.76-.71,10.79-2.13,3.03-1.42,5.77-3.45,8.24-6.11l18.74,19.03c-5.11,6.25-10.7,10.89-16.76,13.92-6.06,3.03-13.82,4.54-23.29,4.54ZM1124.91,123.69v-29.25h84.38l-10.01,29.25h-35.37c-4.28,0-7.76,3.47-7.76,7.76v13.96s-31.24-21.71-31.24-21.71Z"/><path class="cls-1" d="M1292.42,233.59c-13.25,0-25.28-3.17-36.07-9.51-10.79-6.34-19.36-14.91-25.7-25.7-6.35-10.79-9.51-22.81-9.51-36.07s3.17-25.18,9.51-35.78c6.34-10.6,14.91-19.07,25.7-25.42,10.79-6.34,22.81-9.51,36.07-9.51s25.56,3.12,36.35,9.37,19.36,14.72,25.7,25.42c6.34,10.7,9.51,22.68,9.51,35.93s-3.17,25.28-9.51,36.07c-6.35,10.79-14.91,19.36-25.7,25.7-10.79,6.35-22.91,9.51-36.35,9.51ZM1299.47,202.97c4.94-.75,9.45-2.33,13.54-4.74,5.96-3.5,10.6-8.38,13.92-14.63,3.31-6.25,4.97-13.35,4.97-21.3s-1.7-14.95-5.11-21.02c-3.41-6.06-8.05-10.84-13.92-14.34-5.87-3.5-12.69-5.25-20.45-5.25s-14.34,1.75-20.31,5.25c-5.96,3.51-10.61,8.28-13.92,14.34-3.31,6.06-4.97,13.06-4.97,21.02s1.66,15.05,4.97,21.3c3.31,6.25,7.95,11.12,13.92,14.63,5.96,3.51,12.73,5.25,20.31,5.25,2.44,0,4.79-.17,7.05-.52"/><path class="cls-1" d="M1390.65,230.75V99.44l31.24-10.01v141.32h-31.24ZM1421.89,154.92l-10.79-5.4c0-17.23,3.83-31.19,11.5-41.89,7.67-10.69,19.26-16.05,34.79-16.05,6.82,0,12.97,1.23,18.46,3.69,5.49,2.46,10.6,6.44,15.34,11.93l-20.45,21.02c-2.46-2.65-5.21-4.54-8.24-5.68-3.03-1.14-6.53-1.7-10.51-1.7-8.71,0-15.9,2.75-21.58,8.24-5.68,5.49-8.52,14.11-8.52,25.84Z"/><path class="cls-1" d="M1560.76,232.17l-58.22-137.74h34.36l39.76,101.1h-9.94l42.03-101.1h34.65l-63.33,137.74h-19.31ZM1520.15,287.55l42.32-87.19,17.61,31.81-25.28,55.38h-34.65Z"/>
+      </g></g>
+      <path class="cls-2" d="M935.5,154.58c-3.54-3.19-7.36-6.05-11.31-8.66,13.72-32.98-10.53-65.99-46.39-58.57-9.66,2.29-17.56,8.16-21.78,16.6-15.07,33.5,17.01,45.76,52.25,62.04-8.62,13.08-25.55,32.62-41.45,43.79-35.68-26.18-56.48-56.8-68.04-91.94,9.88-7.79,21.54-14.13,33.48-20.61,154.8-74.93-54.69-172.51-44.39-5.19-64.16,38.83-59.98,137.56,25.93,141.17,19.32-.36,36.49-5.5,53.24-17.23,11.12,7.63,21.74,12.78,31.03,14.94,45.35,8.76,74.04-42.72,37.44-76.35ZM866.13,104.19c9.72-28.24,70.31-9.3,53.54,38.91-15.33-10.97-59.75-21.7-53.54-38.91ZM912.74,168.06c36.6,21.07,12.05,80.47-41.32,44.73,15.83-12.64,28.3-25.84,41.32-44.73ZM862.45,212.74c-70.65,48.95-124.09-39.13-67.86-91.4,13.28,36.48,31.68,64.62,67.86,91.4ZM792.44,75.29c5.42-115.9,131.03-63.22,60.43-19.75-19.16,11.16-41.17,20.77-60.23,33.29-.36-4.54-.42-9.03-.2-13.53Z"/>
+      </g></g>
+    </svg>
+  </div>
+  <h1>Automation Discovery<br><em>Intake Form</em></h1>
+  <p class="header-sub">Help me understand your current workflow so I can scope the right solution — nothing too long, just what I need to build accurately.</p>
+</div>
+
+<form action="https://formspree.io/f/mkoypbvp" method="POST">
+<div class="main">
+
+  <div id="fs-success" style="display:none; background:#d2f24b; color:#063959; border-radius:4px; padding:20px 24px; margin-bottom:32px; font-size:14px; font-weight:500;">
+    Got it — I'll review your responses and follow up within 2 business days.
+  </div>
+
+  <div id="fs-error" style="display:none; background:#fde8e4; color:#c0392b; border-radius:4px; padding:20px 24px; margin-bottom:32px; font-size:14px;">
+    Something went wrong. Please try again or email me directly.
+  </div>
+
+  <div class="intro-block">
+    <p>This form takes about 10–15 minutes. There are no right answers — the goal is to capture how you actually work today, and what would make your life meaningfully easier. Partial answers are fine; just note where you're unsure.</p>
+    <p>Once I review your responses, I'll follow up within 2 business days with a scope-of-work draft and a short call invitation to align on details before any commitment is made.</p>
+  </div>
+
+  <!-- Section 1: About You -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-number">1</div>
+      <div class="section-title">About You &amp; Your Practice</div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="two-col">
+      <div class="question">
+        <label>Your name</label>
+        <input type="text" name="name" placeholder="Full name">
+      </div>
+      <div class="question">
+        <label>Best email to reach you</label>
+        <input type="email" name="email" placeholder="email@example.com">
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <!-- Section 2: Current Workflow -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-number">2</div>
+      <div class="section-title">Your Current Workflow</div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="question">
+      <label>How do you record or capture sessions today?</label>
+      <span class="hint">Select all that apply.</span>
+      <div class="check-group">
+        <label class="check-item"><input type="checkbox" name="recording" value="Zoom"><span>I record via Zoom (or similar video platform)</span></label>
+        <label class="check-item"><input type="checkbox" name="recording" value="Dedicated app (Otter.ai, Fathom, Fireflies)"><span>I use a dedicated recording app (e.g. Otter.ai, Fathom, Fireflies)</span></label>
+        <label class="check-item"><input type="checkbox" name="recording" value="Voice dictation"><span>I dictate notes after the session (voice memo, etc.)</span></label>
+        <label class="check-item"><input type="checkbox" name="recording" value="Manual notes"><span>I write notes manually during or after the session</span></label>
+        <label class="check-item"><input type="checkbox" name="recording" value="Don't currently record"><span>I don't currently record — I'd want to start</span></label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label>Where do session transcripts or notes currently end up?</label>
+      <span class="hint">If it varies, describe the messiest version of your current reality.</span>
+      <textarea name="transcripts_location" placeholder="e.g. They download to my Downloads folder, I sometimes move them to a Google Drive folder, but it's not consistent…"></textarea>
+    </div>
+
+    <div class="question">
+      <label>What tools do you currently use to run your practice?</label>
+      <span class="hint">Select all that apply.</span>
+      <div class="check-group">
+        <label class="check-item"><input type="checkbox" name="tools" value="Google Workspace"><span>Google Workspace (Gmail, Drive, Docs, Calendar)</span></label>
+        <label class="check-item"><input type="checkbox" name="tools" value="Microsoft 365"><span>Microsoft 365 (Outlook, OneDrive, Word)</span></label>
+        <label class="check-item"><input type="checkbox" name="tools" value="Notion"><span>Notion</span></label>
+        <label class="check-item"><input type="checkbox" name="tools" value="Practice management platform"><span>A practice management platform (SimplePractice, TheraNest, Jane App, etc.)</span></label>
+        <label class="check-item"><input type="checkbox" name="tools" value="CRM or task manager"><span>A CRM or task manager (Asana, Monday, ClickUp, etc.)</span></label>
+        <label class="check-item"><input type="checkbox" name="tools" value="Spreadsheets"><span>Spreadsheets (Excel or Google Sheets)</span></label>
+        <label class="check-item"><input type="checkbox" name="tools" value="No formal system"><span>I don't use a formal system — things live in email and my head</span></label>
+        <label class="check-item"><input type="checkbox" name="tools" value="Other"><span>Other</span></label>
+      </div>
+      <input type="text" name="tools_other" style="margin-top: 10px;" placeholder="If other, please specify…">
+    </div>
+
+    <div class="question">
+      <label>If you named any platforms above, which one feels most like "home base"?</label>
+      <span class="hint">The place you open first and check most often.</span>
+      <input type="text" name="home_base" placeholder="e.g. Google Drive, or I don't really have one">
+    </div>
+  </div>
+
+  <!-- Section 3: What You Want -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-number">3</div>
+      <div class="section-title">What You Actually Want</div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="question">
+      <label>In plain language, what would the ideal system do for you?</label>
+      <span class="hint">Don't worry about what's technically possible. Just describe the outcome you want.</span>
+      <textarea name="ideal_system" placeholder="e.g. After every session, I want the transcript to automatically file under the right client, and I want a short summary with any action items or things to follow up on next time…"></textarea>
+    </div>
+
+    <div class="question">
+      <label>Which of these outputs would be most valuable to you?</label>
+      <span class="hint">Rank or check the ones that matter most.</span>
+      <div class="check-group">
+        <label class="check-item"><input type="checkbox" name="outputs" value="Automatic session notes"><span>Automatic session notes / summary saved per client</span></label>
+        <label class="check-item"><input type="checkbox" name="outputs" value="Follow-up action items"><span>Follow-up action items extracted and saved (or sent to me)</span></label>
+        <label class="check-item"><input type="checkbox" name="outputs" value="Pre-session prep document"><span>Pre-session prep document — a brief on the last session before I go in</span></label>
+        <label class="check-item"><input type="checkbox" name="outputs" value="Themes and patterns"><span>Themes or patterns flagged across multiple sessions with a client</span></label>
+        <label class="check-item"><input type="checkbox" name="outputs" value="To-do list of follow-ups"><span>A to-do list or task view of all pending client follow-ups</span></label>
+        <label class="check-item"><input type="checkbox" name="outputs" value="Draft follow-up email"><span>Draft follow-up email or message to the client</span></label>
+        <label class="check-item"><input type="checkbox" name="outputs" value="Something else"><span>Something else (describe below)</span></label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label>Where would you want these outputs to land?</label>
+      <span class="hint">e.g. Email me a summary, save a doc to Drive, update a Notion page, show up in a task app.</span>
+      <textarea name="outputs_destination" placeholder="e.g. I'd want a Google Doc per client, and maybe a weekly digest emailed to me with open items…"></textarea>
+    </div>
+
+    <div class="question">
+      <label>How much do you want to interact with the system on a daily basis?</label>
+      <div class="radio-group">
+        <label class="radio-pill"><input type="radio" name="interaction"><span>As little as possible — fully automatic</span></label>
+        <label class="radio-pill"><input type="radio" name="interaction"><span>I'll press a button to trigger it</span></label>
+        <label class="radio-pill"><input type="radio" name="interaction"><span>I can answer a few quick prompts</span></label>
+        <label class="radio-pill"><input type="radio" name="interaction"><span>I'm open to a dashboard or light admin</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Data & Privacy -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-number">4</div>
+      <div class="section-title">Data, Privacy &amp; Compliance</div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="hipaa-note">
+      <div class="icon">⚠</div>
+      <p><strong>Why this matters:</strong> Where I store session notes and transcripts has real legal implications. The answers here shape the entire technical architecture — including which tools are and aren't on the table. I want to get this right from the start, not retrofit it later.</p>
+    </div>
+
+    <div class="question">
+      <label>Are you subject to HIPAA or any other privacy/confidentiality regulations?</label>
+      <div class="radio-group">
+        <label class="radio-pill"><input type="radio" name="hipaa"><span>Yes — I'm a licensed clinician / healthcare provider</span></label>
+        <label class="radio-pill"><input type="radio" name="hipaa"><span>I'm a coach — not technically HIPAA, but I want strong privacy</span></label>
+        <label class="radio-pill"><input type="radio" name="hipaa"><span>I'm not sure — let's talk about it</span></label>
+        <label class="radio-pill"><input type="radio" name="hipaa"><span>No formal requirements apply to me</span></label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label>Do your clients sign any consent forms related to recording or data storage?</label>
+      <div class="radio-group">
+        <label class="radio-pill"><input type="radio" name="consent"><span>Yes, I have a standard consent process</span></label>
+        <label class="radio-pill"><input type="radio" name="consent"><span>Informally, but nothing formal</span></label>
+        <label class="radio-pill"><input type="radio" name="consent"><span>Not currently</span></label>
+        <label class="radio-pill"><input type="radio" name="consent"><span>Not sure</span></label>
+      </div>
+    </div>
+
+    <div class="question">
+      <label>Are there any tools or platforms you know you <em>cannot</em> use — either for compliance, preference, or practical reasons?</label>
+      <textarea name="tools_excluded" placeholder="e.g. Can't use any tool that stores data outside the US; not comfortable with anything that sends data to OpenAI; already paying for Google and prefer to stay in that ecosystem…"></textarea>
+    </div>
+  </div>
+
+  <!-- Section 5: Success & Scope -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-number">5</div>
+      <div class="section-title">What Success Looks Like</div>
+    </div>
+    <div class="section-divider"></div>
+
+    <div class="question">
+      <label>What does this feel like when it's working?</label>
+      <span class="hint">Describe the day-in-the-life version. What are you no longer doing? What's easier?</span>
+      <textarea name="success_vision" placeholder="e.g. I finish a session and I don't have to touch anything. By the time I open my laptop the next morning, the notes are where they need to be and I know what I left open with each client…"></textarea>
+    </div>
+
+    <div class="question">
+      <label>What would break your trust in this system?</label>
+      <span class="hint">e.g. Wrong notes filed under the wrong client. Missing a follow-up. Something surfacing in front of a client that shouldn't.</span>
+      <textarea name="trust_breakers" placeholder="e.g. If notes ever got mixed up between clients, that would be a dealbreaker…"></textarea>
+    </div>
+
+    <div class="question">
+      <label>Is there a timeline pressure or a specific problem you're trying to solve right now?</label>
+      <textarea name="timeline" placeholder="e.g. I have a waitlist growing and I'm falling behind on notes; I need something in place before I take on more clients…"></textarea>
+    </div>
+
+    <div class="question">
+      <label>Is there anything else you want me to know before I scope this out?</label>
+      <textarea name="anything_else" placeholder="Anything that didn't fit above — context, constraints, preferences, concerns."></textarea>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="form-footer">
+    <p class="footer-note">
+      Your responses will be used only to scope this project. Nothing is shared with third parties. Once I review this, I'll follow up within 2 business days with a scope-of-work draft and a short call invitation to align on details before any commitment is made.
+    </p>
+    <div class="submit-row">
+      <button class="btn-submit" type="submit">Submit Intake Form</button>
+    </div>
+  </div>
+
+</div>
+</form>
+
+<script>
+  const form = document.querySelector('form');
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+    if (response.ok) {
+      document.getElementById('fs-success').style.display = 'block';
+      document.getElementById('fs-error').style.display = 'none';
+      form.reset();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      document.getElementById('fs-error').style.display = 'block';
+      document.getElementById('fs-success').style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>
